@@ -53,14 +53,10 @@ async def main_menu(message):
 
 @dp.message_handler(text='Купить')
 async def get_buying_list(message):
-    with open("1.jpg", "rb") as Яблоко:
-        await message.answer_photo(Яблоко, f"Название: Product1 | Описание: Яблоко | Цена: {1*100}")
-    with open("2.jpg", "rb") as Банан:
-        await message.answer_photo(Банан, f"Название: Product2 | Описание: Банан | Цена: {2*100}")
-    with open("3.jpg", "rb") as Груша:
-        await message.answer_photo(Груша, f"Название: Product3 | Описание: Груша | Цена: {3*100}")
-    with open("4.jpg", "rb") as Яблоко:
-        await message.answer_photo(Яблоко, f"Название: Product4 | Описание: Яблоко | Цена: {4*100}")
+    for i in range(1, 5):
+        await message.answer(f'Название: Продукт {i}| Описание: Описание {i}| Цена: {i*100}')
+        with open(f'{i}.jpg', 'rb') as img:
+            await message.answer_photo(img)
     await message.answer("Выберите продукт для покупки:", reply_markup=kb2.row())
 
 
